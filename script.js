@@ -15,6 +15,12 @@ function getComputerChoice(){
 function getHumanChoice(){
     let humanNum = prompt("Elija piedra papel o tijeras");
 
+
+    while (humanNum === null || (humanNum !== "piedra" && humanNum !== "papel" && humanNum !== "tijeras")){
+        alert("Valor incorrecto, por favor ingrese un valor aceptado");
+        humanNum = prompt("Elija piedra, papel o tijeras");
+    }
+
     if(humanNum === "piedra"){
         return "piedra";
     } else if (humanNum === "papel"){
@@ -24,4 +30,5 @@ function getHumanChoice(){
     }
 }
 
-console.log(getHumanChoice());
+console.log("Opción del usuario:", getHumanChoice());
+console.log("Opción de la computadora:", getComputerChoice());
