@@ -35,30 +35,61 @@ function getHumanChoice(){
 
 //Declaración de variables para la puntuación de los jugadores
 
-let humanScore = 0;
-let computerScore = 0;
 
 function playRound(humanChoice, computerChoice){
     humanChoice = humanChoice.toLowerCase();
 
     if(humanChoice === computerChoice){
-        humanScore++ & computerScore++;
-        console.log("Puntuación: ", humanScore, computerScore);
         return "Empate";
     } else if (
         (humanChoice === "piedra" && computerChoice === "tijeras") || 
         (humanChoice === "papel" && computerChoice === "piedra") || 
-        (humanChoice === "tijeras" && computerChoice === "papel")){
-        humanScore++;
-        console.log("Puntuación de la persona: ", humanScore);    
+        (humanChoice === "tijeras" && computerChoice === "papel")){   
         return "Ganas!";
     } else {
-        computerScore++;
-        console.log("Puntuación de la computadora: ", computerScore);
         return "Pierdes!";
     }
 }
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
-console.log(playRound(humanSelection, computerSelection));
+
+
+// Desarrollando la lógica para todo el juego.
+
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+
+    for(let round = 0; round < 5; round++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        console.log(`Selección del jugador: ${humanSelection}`);
+        console.log(`Selección de la computadora: ${computerSelection}`);
+
+        const result = playRound(humanSelection, computerSelection);
+        
+        
+        if (result === "Ganas!") {
+            humanScore++;
+        }else if (result === "Pierdes!"){
+            computerScore++;
+        }
+
+        console.log(`Ronda ${round + 1}: ${result}`);
+        console.log(`Puntuación actual - Persona: ${humanScore}, Computadora: ${computerScore}`);
+    }
+
+    
+
+    if(humanScore > computerScore){
+        console.log("Ganaste el juego!");
+    }else if (humanScore < computerScore){
+        console.log("Perdiste el juego!");
+    }else {
+        console.log("Empataste");
+    }
+}
+
+playGame();
