@@ -1,3 +1,4 @@
+//Función para obtener un valor aleatorio de la pc.
 function getComputerChoice(){
     let randomNum = Math.floor(Math.random() * 3);
     
@@ -10,7 +11,7 @@ function getComputerChoice(){
     }
 }
 
-
+//Función para obtener un valor del usuario.
 
 function getHumanChoice(){
     let humanNum = prompt("Elija piedra papel o tijeras");
@@ -30,5 +31,34 @@ function getHumanChoice(){
     }
 }
 
-console.log("Opción del usuario:", getHumanChoice());
-console.log("Opción de la computadora:", getComputerChoice());
+
+
+//Declaración de variables para la puntuación de los jugadores
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice){
+    humanChoice = humanChoice.toLowerCase();
+
+    if(humanChoice === computerChoice){
+        humanScore++ & computerScore++;
+        console.log("Puntuación: ", humanScore, computerScore);
+        return "Empate";
+    } else if (
+        (humanChoice === "piedra" && computerChoice === "tijeras") || 
+        (humanChoice === "papel" && computerChoice === "piedra") || 
+        (humanChoice === "tijeras" && computerChoice === "papel")){
+        humanScore++;
+        console.log("Puntuación de la persona: ", humanScore);    
+        return "Ganas!";
+    } else {
+        computerScore++;
+        console.log("Puntuación de la computadora: ", computerScore);
+        return "Pierdes!";
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+console.log(playRound(humanSelection, computerSelection));
